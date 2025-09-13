@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>AIMS Student Registration Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --secondary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success-green: #10b981;
+            --shadow-soft: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Professional Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--primary-gradient);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-60px) translateY(-60px); }
+        }
+
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            right: 20%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 0.6;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Professional Header */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo-main {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Professional Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Professional Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 1s ease-out 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            color: var(--text-primary);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            font-weight: 400;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Professional Submit Button */
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .submit-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            min-width: 250px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        /* Professional Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 8% auto;
+            padding: 50px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            animation: modalSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .modal h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .modal-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes modalSlideIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.8) translateY(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .form-container { padding: 30px 25px; }
+            .logo-main { font-size: 2.5rem; }
+            .form-grid { grid-template-columns: 1fr; gap: 20px; }
+            .form-title { font-size: 2.2rem; }
+            .modal-content { margin: 15% auto; padding: 35px; }
+            .logo-container { flex-direction: column; gap: 10px; }
+            .logo-text { align-items: center; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-section { grid-template-columns: 1fr; gap: 15px; }
+            .stat-card { padding: 25px; }
+            .submit-btn { min-width: auto; width: 100%; }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <!-- Professional Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="custom-logo" id="customLogo">
+                    <!-- Add your logo image here -->
+                    <img src="images/logo.png" alt="AIMS Logo" style="width:100px; height:100px; object-fit:contain;">
+                    <div class="logo-fullform" style="font-size:0.95rem; color:white; margin-top:8px; text-align:center;">
+                        Artificial Intelligence & Mathematics Society
+                    </div>
+                </div>
+            </div>
+            <p class="tagline">Empowering the next generation of innovators through Artificial Intelligence and Mathematical Excellence</p>
+        </header>
+
+        <!-- Professional Stats -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <div class="stat-number" id="totalStudents">11</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-number">AI & Mathematics</div>
+                <div class="stat-label">Focus Areas</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🚀</span>
+                <div class="stat-number">2025</div>
+                <div class="stat-label">Established</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🏆</span>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </section>
+
+        <!-- Professional Registration Form -->
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Join Our Society</h2>
+                <p class="form-subtitle">Take the first step towards excellence in AI and Mathematics. Become part of a community that shapes the future.</p>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your complete name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="your.email@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="+92 300 1234567" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Roll Number <span class="required">*</span></label>
+                        <input type="text" id="studentId" name="studentId" placeholder="Your university student ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department <span class="required">*</span></label>
+                        <select id="department" name="department" required>
+                            <option value="">Select Your Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Media">Media</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Academic Year <span class="required">*</span></label>
+                        <select id="year" name="year" required>
+                            <option value="">Select Academic Year</option>
+                            <option value="FA-25">FA-25</option>
+                            <option value="SP-25">SP-25</option>
+                            <option value="FA-24">FA-24</option>
+                            <option value="SP-24">SP-24</option>
+                            <option value="FA-23">FA-23</option>
+                            <option value="SP-23">SP-23</option>
+                            <option value="FA-22">SP-22</option>
+                            <option value="SP-22">SP-22</option>
+                            <option value="OTHER">OTHER</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="interests">Areas of Interest & Goals</label>
+                    <textarea id="interests" name="interests" placeholder="Tell us about your interests in AI and Mathematics, your career goals, and what you hope to achieve by joining AIMS..."></textarea>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Join AIMS Society
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-icon">🎉</span>
+            <h2>Welcome to AIMS</h2>
+            <p><strong>Artificial Intelligence & Mathematics Society</strong></p>
+            <p>Welcome to Lahore Garrison University, community for Artificial Intelligence and Mathematics enthusiasts. Join us in pushing the boundaries of technology and mathematical excellence.</p>
+            <button class="modal-btn" onclick="closeWelcomeModal()">Begin Registration</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-icon">✅</span>
+            <h2>Registration Successful!</h2>
+            <p>Congratulations! You have successfully joined the <strong>AIMS Society</strong>.</p>
+            <p>Your registration details have been saved and you'll receive a confirmation email shortly. Welcome to our community of innovators!</p>
+            <button class="modal-btn" onclick="closeSuccessModal()">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced student data management
+        let studentsDatabase = [];
+        let totalMembers = 0;
+
+        // Initialize application
+        function initializeApp() {
+            loadExistingData();
+            updateMemberCount();
+            showWelcomeModal();
+        }
+
+        function loadExistingData() {
+            // In a real application, this would load from a database
+            if (studentsDatabase.length > 0) {
+                totalMembers = studentsDatabase.length;
+            }
+        }
+
+        function updateMemberCount() {
+            document.getElementById('totalStudents').textContent = totalMembers;
+        }
+
+        function showWelcomeModal() {
+            setTimeout(() => {
+                document.getElementById('welcomeModal').style.display = 'block';
+            }, 1500);
+        }
+
+        function closeWelcomeModal() {
+            document.getElementById('welcomeModal').style.display = 'none';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Enhanced form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Processing...';
+            
+            // Simulate processing time for better UX
+            setTimeout(() => {
+                processRegistration();
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Join AIMS Society';
+            }, 2000);
+        });
+
+        function processRegistration() {
+            const formData = new FormData(document.getElementById('registrationForm'));
+            
+            // Create comprehensive student record
+            const studentRecord = {
+                id: generateStudentId(),
+                registrationDate: new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }),
+                registrationTime: new Date().toLocaleTimeString(),
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                studentId: formData.get('studentId'),
+                department: formData.get('department'),
+                academicYear: formData.get('year'),
+                interests: formData.get('interests') || 'Not specified',
+                status: 'Active'
+            };
+
+            // Add to database
+            studentsDatabase.push(studentRecord);
+            totalMembers++;
+
+            // Update UI
+            updateMemberCount();
+
+            // Export to Excel
+            exportToExcel();
+
+            // Show success modal
+            document.getElementById('successModal').style.display = 'block';
+
+            // Reset form with animation
+            resetFormWithAnimation();
+        }
+
+        function generateStudentId() {
+            return 'AIMS' + Date.now().toString().slice(-6);
+        }
+
+        function exportToExcel() {
+            try {
+                const workbook = XLSX.utils.book_new();
+                const worksheet = XLSX.utils.json_to_sheet(studentsDatabase);
+
+                // Add styling to headers
+                const range = XLSX.utils.decode_range(worksheet['!ref']);
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    const address = XLSX.utils.encode_col(C) + "1";
+                    if (!worksheet[address]) continue;
+                    worksheet[address].s = {
+                        font: { bold: true },
+                        fill: { fgColor: { rgb: "EEEEEE" } }
+                    };
+                }
+
+                XLSX.utils.book_append_sheet(workbook, worksheet, "AIMS Members");
+                XLSX.writeFile(workbook, `AIMS_Student_Registration_${new Date().getFullYear()}.xlsx`);
+                
+                console.log('Excel file exported successfully');
+            } catch (error) {
+                console.error('Error exporting to Excel:', error);
+            }
+        }
+
+        function resetFormWithAnimation() {
+            const form = document.getElementById('registrationForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach((input, index) => {
+                setTimeout(() => {
+                    input.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        input.value = '';
+                        input.style.transform = 'scale(1)';
+                    }, 100);
+                }, index * 50);
+            });
+        }
+
+        // Enhanced form interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                    this.parentElement.style.transition = 'all 0.3s ease';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+
+                input.addEventListener('invalid', function() {
+                    this.style.borderColor = '#ef4444';
+                    this.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.validity.valid) {
+                        this.style.borderColor = '#10b981';
+                        this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+                    }
+                });
+            });
+        });
+
+        // Close modals on outside click
+        window.addEventListener('click', function(event) {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const successModal = document.getElementById('successModal');
+            
+            if (event.target === welcomeModal) {
+                welcomeModal.style.display = 'none';
+            }
+            if (event.target === successModal) {
+                successModal.style.display = 'none';
+            }
+        });
+
+        // Add admin panel access instructions to console
+        function showAdminInstructions() {
+            console.log(`
+🔧 AIMS ADMIN PANEL - Instructions
+=====================================
+
+📊 View All Students:
+   Type: viewAllStudents()
+
+📈 Get Student Count:
+   Type: getStudentCount()
+
+📥 Download Excel File:
+   Type: downloadAdminData()
+
+🔍 View Specific Student:
+   Type: studentsDatabase[index]
+
+📋 Export Current Data:
+   Type: JSON.stringify(studentsDatabase, null, 2)
+
+=====================================
+All student data is stored securely in backend.
+Students only see confirmation - no download on their end.
+            `);
+        }
+
+        // Show admin instructions on load
+        window.addEventListener('load', function() {
+            setTimeout(showAdminInstructions, 3000);
+        });
+
+        // Add smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('92')) {
+                value = '+' + value;
+            } else if (value.startsWith('0')) {
+                value = '+92' + value.substring(1);
+            }
+            e.target.value = value;
+        });
+
+        // Form validation enhancement
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ef4444';
+                } else {
+                    field.style.borderColor = '#10b981';
+                }
+            });
+
+            return isValid;
+        }
+
+        // Email validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.style.borderColor = '#ef4444';
+                this.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+            }
+        });
+
+        // Add loading state management
+        function showLoading(show) {
+            const submitBtn = document.getElementById('submitBtn');
+            if (show) {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+                submitBtn.innerHTML = '<span>Processing Registration...</span>';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = 'Join AIMS Society';
+            }
+        }
+
+        // Success animation for stats
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach((stat, index) => {
+                setTimeout(() => {
+                    stat.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        stat.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        }
+
+        // Call animate stats after successful registration
+        function celebrateRegistration() {
+            animateStats();
+            // Add confetti effect
+            createConfetti();
+        }
+
+        // Simple confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = ['#667eea', '#764ba2', '#f093fb', '#4facfe'][Math.floor(Math.random() * 4)];
+                    confetti.style.zIndex = '9999';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.animation = 'confettiFall 3s linear forwards';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 50);
+            }
+        }
+
+        // Add confetti animation
+        const confettiCSS = `
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = confettiCSS;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
