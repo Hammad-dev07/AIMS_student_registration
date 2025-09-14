@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="images/logo.png" type="image/png">
     <title>AIMS Student Registration Portal</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -42,189 +42,7 @@
             position: relative;
         }
 
-        
-
         /* Animated Mathematical Background */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    background: var(--primary-gradient);
-}
-
-.bg-animation::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(51, 153, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
-    animation: backgroundPulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes backgroundPulse {
-    0% { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 0.8; transform: scale(1.05); }
-}
-
-/* Mathematical Symbols Animation */
-.math-symbols-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.math-symbol-animated {
-    position: absolute;
-    font-size: 2rem;
-    color: rgba(51, 153, 255, 0.3);
-    font-weight: bold;
-    animation: mathFloat 8s linear infinite;
-}
-
-@keyframes mathFloat {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Floating Mathematical Elements */
-.floating-elements {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.floating-element {
-    position: absolute;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: floatMath 12s ease-in-out infinite;
-    color: var(--light-blue);
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
-.floating-element:nth-child(1) {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 5%;
-    animation-delay: 0s;
-}
-
-.floating-element:nth-child(2) {
-    width: 60px;
-    height: 60px;
-    top: 60%;
-    right: 10%;
-    animation-delay: 2s;
-}
-
-.floating-element:nth-child(3) {
-    width: 100px;
-    height: 100px;
-    bottom: 20%;
-    left: 15%;
-    animation-delay: 4s;
-}
-
-.floating-element:nth-child(4) {
-    width: 70px;
-    height: 70px;
-    top: 30%;
-    right: 20%;
-    animation-delay: 1s;
-}
-
-.floating-element:nth-child(5) {
-    width: 90px;
-    height: 90px;
-    top: 50%;
-    left: 50%;
-    animation-delay: 3s;
-}
-
-.floating-element:nth-child(6) {
-    width: 75px;
-    height: 75px;
-    bottom: 40%;
-    right: 30%;
-    animation-delay: 5s;
-}
-
-.floating-element:nth-child(7) {
-    width: 85px;
-    height: 85px;
-    top: 80%;
-    left: 30%;
-    animation-delay: 2.5s;
-}
-
-.floating-element:nth-child(8) {
-    width: 65px;
-    height: 65px;
-    top: 15%;
-    left: 70%;
-    animation-delay: 4.5s;
-}
-
-@keyframes floatMath {
-    0%, 100% { 
-        transform: translateY(0px) rotate(0deg) scale(1); 
-        opacity: 0.6;
-    }
-    25% { 
-        transform: translateY(-20px) rotate(90deg) scale(1.1); 
-        opacity: 0.8;
-    }
-    50% { 
-        transform: translateY(-40px) rotate(180deg) scale(1); 
-        opacity: 1;
-    }
-    75% { 
-        transform: translateY(-20px) rotate(270deg) scale(0.9); 
-        opacity: 0.8;
-    }
-}
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Background animations */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -244,13 +62,164 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 20% 50%, rgba(51, 153, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
             animation: backgroundPulse 6s ease-in-out infinite alternate;
         }
 
         @keyframes backgroundPulse {
-            0% { opacity: 0.5; }
-            100% { opacity: 0.8; }
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Mathematical Symbols Animation */
+        .math-symbols-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .math-symbol-animated {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(51, 153, 255, 0.3);
+            font-weight: bold;
+            animation: mathFloat 8s linear infinite;
+        }
+
+        @keyframes mathFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Mathematical Elements */
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatMath 12s ease-in-out infinite;
+            color: var(--light-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .floating-element:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            top: 50%;
+            left: 50%;
+            animation-delay: 3s;
+        }
+
+        .floating-element:nth-child(6) {
+            width: 75px;
+            height: 75px;
+            bottom: 40%;
+            right: 30%;
+            animation-delay: 5s;
+        }
+
+        .floating-element:nth-child(7) {
+            width: 85px;
+            height: 85px;
+            top: 80%;
+            left: 30%;
+            animation-delay: 2.5s;
+        }
+
+        .floating-element:nth-child(8) {
+            width: 65px;
+            height: 65px;
+            top: 15%;
+            left: 70%;
+            animation-delay: 4.5s;
+        }
+
+        @keyframes floatMath {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.6;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(90deg) scale(1.1); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-40px) rotate(180deg) scale(1); 
+                opacity: 1;
+            }
+            75% { 
+                transform: translateY(-20px) rotate(270deg) scale(0.9); 
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         /* Header */
@@ -346,7 +315,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Form container - CENTERED AND LIMITED WIDTH */
+        /* Form container */
         .form-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(25px);
@@ -487,7 +456,7 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Modal styles - COMPLETELY REWRITTEN */
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -506,9 +475,9 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: 1% auto;
-            padding: 40px;
-            border-radius: 30px;
+            margin: 2% auto;
+            padding: 30px;
+            border-radius: 25px;
             width: 90%;
             max-width: 600px;
             position: relative;
@@ -663,33 +632,400 @@
             }
         }
 
-        /* Responsive */
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            .form-grid { 
-                grid-template-columns: 1fr; 
-                gap: 20px; 
+            .container {
+                padding: 10px;
             }
+
+            .header {
+                margin-bottom: 25px;
+            }
+
+            .logo-container {
+                margin-bottom: 15px;
+            }
+
+            .custom-logo {
+                padding: 15px;
+            }
+
+            .custom-logo img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
             .stats-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 10px;
             }
-            .modal-content { 
-                margin: 10% auto; 
-                padding: 30px 20px; 
+
+            .stat-card {
+                padding: 20px;
             }
-            .form-title { font-size: 2.5rem; }
+
+            .stat-icon {
+                font-size: 2.2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+
+            .form-container {
+                padding: 20px;
+                border-radius: 20px;
+                margin: 0 10px;
+            }
+
+            .form-header {
+                margin-bottom: 25px;
+            }
+
+            .form-icon {
+                font-size: 2.5rem;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .form-group label {
+                font-size: 0.85rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 12px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
+            .submit-btn {
+                padding: 15px;
+                font-size: 1rem;
+                min-width: 100%;
+                border-radius: 12px;
+            }
+
+            /* Modal Adjustments for Mobile */
+            .modal-content {
+                margin: 15% auto;
+                padding: 20px;
+                width: 90%;
+                max-width: 300px;
+                border-radius: 20px;
+            }
+
+            .modal-logo {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 15px;
+            }
+
+            .modal h2 {
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+            }
+
+            .modal p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .modal-equation {
+                padding: 12px;
+                margin: 15px 0;
+                border-radius: 10px;
+            }
+
+            .modal-equation span {
+                font-size: 1rem;
+            }
+
+            .modal-btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+
+            .modal-math-symbol {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .modal-close {
+                font-size: 22px;
+                width: 28px;
+                height: 28px;
+                right: 12px;
+                top: 12px;
+            }
+
+            .floating-element {
+                font-size: 1rem;
+            }
+
+            .floating-element:nth-child(1) {
+                width: 50px;
+                height: 50px;
+                top: 5%;
+                left: 10%;
+            }
+
+            .floating-element:nth-child(2) {
+                width: 40px;
+                height: 40px;
+                top: 55%;
+                right: 15%;
+            }
+
+            .floating-element:nth-child(3) {
+                width: 60px;
+                height: 60px;
+                bottom: 15%;
+                left: 20%;
+            }
+
+            .floating-element:nth-child(4) {
+                width: 45px;
+                height: 45px;
+                top: 25%;
+                right: 25%;
+            }
+
+            .floating-element:nth-child(5) {
+                width: 55px;
+                height: 55px;
+                top: 45%;
+                left: 45%;
+            }
+
+            .floating-element:nth-child(6) {
+                width: 50px;
+                height: 50px;
+                bottom: 35%;
+                right: 20%;
+            }
+
+            .floating-element:nth-child(7) {
+                width: 55px;
+                height: 55px;
+                top: 75%;
+                left: 25%;
+            }
+
+            .floating-element:nth-child(8) {
+                width: 45px;
+                height: 45px;
+                top: 10%;
+                left: 65%;
+            }
+
+            .math-symbol-animated {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .stats-section { 
-                grid-template-columns: 1fr; 
+            .container {
+                padding: 8px;
             }
-            .submit-btn { 
-                width: 100%;
-                padding: 20px;
+
+            .custom-logo img {
+                width: 50px;
+                height: 50px;
             }
+
+            .logo-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .stats-section {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-icon {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
             .form-container {
-                padding: 25px 15px;
+                padding: 15px;
+                margin: 0 5px;
+                border-radius: 15px;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 0.8rem;
+                border-radius: 8px;
+            }
+
+            .form-group textarea {
+                min-height: 80px;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+
+            /* Further Modal Adjustments for Very Small Screens */
+            .modal-content {
+                margin: 20% auto;
+                padding: 15px;
+                max-width: 260px;
+                border-radius: 15px;
+            }
+
+            .modal-logo {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .modal h2 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+
+            .modal p {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+
+            .modal-equation {
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 8px;
+            }
+
+            .modal-equation span {
+                font-size: 0.9rem;
+            }
+
+            .modal-btn {
+                padding: 10px 25px;
+                font-size: 0.8rem;
+                border-radius: 8px;
+            }
+
+            .modal-math-symbol {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .modal-close {
+                font-size: 20px;
+                width: 25px;
+                height: 25px;
+                right: 10px;
+                top: 10px;
+            }
+
+            .floating-element {
+                font-size: 0.9rem;
+            }
+
+            .floating-element:nth-child(1) {
+                width: 40px;
+                height: 40px;
+            }
+
+            .floating-element:nth-child(2) {
+                width: 35px;
+                height: 35px;
+            }
+
+            .floating-element:nth-child(3) {
+                width: 50px;
+                height: 50px;
+            }
+
+            .floating-element:nth-child(4) {
+                width: 40px;
+                height: 40px;
+            }
+
+            .floating-element:nth-child(5) {
+                width: 45px;
+                height: 45px;
+            }
+
+            .floating-element:nth-child(6) {
+                width: 40px;
+                height: 40px;
+            }
+
+            .floating-element:nth-child(7) {
+                width: 45px;
+                height: 45px;
+            }
+
+            .floating-element:nth-child(8) {
+                width: 35px;
+                height: 35px;
+            }
+
+            .math-symbol-animated {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -721,8 +1057,10 @@
                     <div class="logo-subtitle">Artificial Intelligence & Mathematics Society</div>
                     <br>
                     <div class="logo-subtitle"><i>Innovate Illuminate Integrate</i></div>
-                   <br>
-            <p class="tagline">Empowering the next generation of innovators through Artificial Intelligence and Mathematical Excellence</p>
+                    <br>
+                    <p class="tagline">Empowering the next generation of innovators through Artificial Intelligence and Mathematical Excellence</p>
+                </div>
+            </div>
         </header>
 
         <section class="stats-section">
@@ -824,7 +1162,7 @@
                     <label for="interests">
                         Interests & Research Goals
                     </label>
-                    <textarea id="interests" name="interests" placeholder="Share your passion for mathematics and Artificial Intelligence. What mathematical concepts fascinate you? What research areas do you want to explore? How do you see yourself contributing to the field of AI and Mathematics?"></textarea>
+                    <textarea id="interests" name="interests" placeholder="Share your passion for mathematics and Artificial Integration. What mathematical concepts fascinate you? What research areas do you want to explore? How do you see yourself contributing to the field of AI and Mathematics?"></textarea>
                 </div>
 
                 <div class="submit-section">
@@ -873,7 +1211,7 @@
         let studentsDatabase = [];
         let totalMembers = 11;
 
-        // Modal Functions - COMPLETELY REWRITTEN
+        // Modal Functions
         function showWelcomeModal() {
             const modal = document.getElementById('welcomeModal');
             if (modal) {
@@ -908,58 +1246,55 @@
 
         // Google Sheets Integration
         async function sendToGoogleSheets(studentData) {
-    console.log('Sending data to Google Sheets...', studentData);
+            console.log('Sending data to Google Sheets...', studentData);
 
-    // Convert studentData to URL-encoded string
-    const formBody = Object.keys(studentData)
-        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(studentData[key]))
-        .join('&');
+            const formBody = Object.keys(studentData)
+                .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(studentData[key]))
+                .join('&');
 
-    try {
-        const response = await fetch(GOOGLE_SHEETS_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formBody
-        });
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formBody
+                });
 
-        console.log('Response status:', response.status);
+                console.log('Response status:', response.status);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const responseText = await response.text();
+                console.log('Raw response:', responseText);
+
+                let result;
+                try {
+                    result = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('Failed to parse JSON:', parseError);
+                    throw new Error('Invalid JSON response');
+                }
+
+                console.log('Success:', result);
+
+                studentsDatabase.push(studentData);
+                localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
+
+                return result;
+
+            } catch (error) {
+                console.error('Error:', error);
+
+                studentsDatabase.push(studentData);
+                localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
+
+                alert(`Backend Error: ${error.message}\nData saved locally.`);
+                return { success: false, error: error.message };
+            }
         }
-
-        const responseText = await response.text();
-        console.log('Raw response:', responseText);
-
-        let result;
-        try {
-            result = JSON.parse(responseText);
-        } catch (parseError) {
-            console.error('Failed to parse JSON:', parseError);
-            throw new Error('Invalid JSON response');
-        }
-
-        console.log('Success:', result);
-
-        // Save locally as backup
-        studentsDatabase.push(studentData);
-        localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
-
-        return result;
-
-    } catch (error) {
-        console.error('Error:', error);
-
-        // Save locally as fallback
-        studentsDatabase.push(studentData);
-        localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
-
-        alert(`Backend Error: ${error.message}\nData saved locally.`);
-        return { success: false, error: error.message };
-    }
-}
 
         // Form handling
         function generateStudentId() {
@@ -1083,7 +1418,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, setting up event listeners...');
             
-            // Form submission
             const form = document.getElementById('registrationForm');
             if (form) {
                 form.addEventListener('submit', function(e) {
@@ -1094,7 +1428,6 @@
                 });
             }
 
-            // Phone formatting
             const phoneInput = document.getElementById('phone');
             if (phoneInput) {
                 phoneInput.addEventListener('input', function() {
@@ -1102,7 +1435,6 @@
                 });
             }
 
-            // Email validation
             const emailInput = document.getElementById('email');
             if (emailInput) {
                 emailInput.addEventListener('blur', function() {
@@ -1112,7 +1444,6 @@
                 });
             }
 
-            // Modal close on background click
             window.addEventListener('click', function(event) {
                 const welcomeModal = document.getElementById('welcomeModal');
                 const successModal = document.getElementById('successModal');
@@ -1125,17 +1456,14 @@
                 }
             });
 
-            // Show welcome modal after page loads
             setTimeout(() => {
                 showWelcomeModal();
             }, 1500);
         });
 
-        // Initialize app
         function initializeApp() {
             console.log('AIMS LGU System initializing...');
             
-            // Load saved data
             const savedData = localStorage.getItem('aimsStudents');
             if (savedData) {
                 studentsDatabase = JSON.parse(savedData);
@@ -1146,7 +1474,6 @@
             console.log('AIMS System ready!');
         }
 
-        // Debug functions
         window.AIMS_DEBUG = {
             showWelcome: showWelcomeModal,
             showSuccess: showSuccessModal,
@@ -1156,7 +1483,6 @@
             checkData: () => console.log('Local data:', JSON.parse(localStorage.getItem('aimsStudents') || '[]'))
         };
 
-        // Initialize when page loads
         window.addEventListener('load', initializeApp);
     </script>
 </body>
