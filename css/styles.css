@@ -1,0 +1,1027 @@
+/* AIMS Student Registration Portal - CSS Styles */
+/* Professional Blue Mathematical Theme */
+
+:root {
+    /* Blue Theme Color Palette */
+    --primary-blue: #0066cc;
+    --secondary-blue: #004499;
+    --light-blue: #3399ff;
+    --dark-blue: #002266;
+    --accent-blue: #00aaff;
+    
+    /* Mathematical Blue Gradients */
+    --primary-gradient: linear-gradient(135deg, #0066cc 0%, #004499 50%, #00aaff 100%);
+    --glass-bg: rgba(51, 153, 255, 0.1);
+    --glass-border: rgba(51, 153, 255, 0.2);
+    
+    /* Text Colors */
+    --text-primary: #1a1a2e;
+    --text-secondary: #16213e;
+    --text-light: #ffffff;
+    
+    /* Mathematical Shadows */
+    --shadow-lg: 0 25px 50px -12px rgba(0, 102, 204, 0.25);
+    --shadow-mathematical: 0 15px 35px rgba(0, 68, 153, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--primary-gradient);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* Animated Mathematical Background */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: var(--primary-gradient);
+}
+
+.bg-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(51, 153, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
+    animation: backgroundPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Mathematical Symbols Animation */
+.math-symbols-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.math-symbol-animated {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(51, 153, 255, 0.3);
+    font-weight: bold;
+    animation: mathFloat 8s linear infinite;
+}
+
+@keyframes mathFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Floating Mathematical Elements */
+.floating-elements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.floating-element {
+    position: absolute;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatMath 12s ease-in-out infinite;
+    color: var(--light-blue);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.floating-element:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.floating-element:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 4s;
+}
+
+.floating-element:nth-child(4) {
+    width: 70px;
+    height: 70px;
+    top: 30%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+.floating-element:nth-child(5) {
+    width: 90px;
+    height: 90px;
+    top: 50%;
+    left: 50%;
+    animation-delay: 3s;
+}
+
+.floating-element:nth-child(6) {
+    width: 75px;
+    height: 75px;
+    bottom: 40%;
+    right: 30%;
+    animation-delay: 5s;
+}
+
+.floating-element:nth-child(7) {
+    width: 85px;
+    height: 85px;
+    top: 80%;
+    left: 30%;
+    animation-delay: 2.5s;
+}
+
+.floating-element:nth-child(8) {
+    width: 65px;
+    height: 65px;
+    top: 15%;
+    left: 70%;
+    animation-delay: 4.5s;
+}
+
+@keyframes floatMath {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        opacity: 0.6;
+    }
+    25% { 
+        transform: translateY(-20px) rotate(90deg) scale(1.1); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-40px) rotate(180deg) scale(1); 
+        opacity: 1;
+    }
+    75% { 
+        transform: translateY(-20px) rotate(270deg) scale(0.9); 
+        opacity: 0.8;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 1s ease-out;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.custom-logo {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-mathematical);
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* Stats section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 35px 25px;
+    text-align: center;
+    color: var(--text-light);
+    box-shadow: var(--shadow-mathematical);
+    transition: all 0.4s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1;
+    color: var(--accent-blue);
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Form container */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(51, 153, 255, 0.2);
+    border-radius: 35px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 1s ease-out 0.4s both;
+    position: relative;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--primary-gradient);
+    border-radius: 35px 35px 0 0;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.form-icon {
+    font-size: 4rem;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form-title {
+    color: var(--text-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.form-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+.required {
+    color: #dc2626;
+    margin-left: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #e0e7ff;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: white;
+    font-weight: 400;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    transform: translateY(-3px);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.submit-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 22px 70px;
+    border-radius: 18px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    min-width: 280px;
+    box-shadow: var(--shadow-mathematical);
+}
+
+.submit-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 34, 102, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 30px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    animation: modalSlideIn 0.6s ease-out;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-close:hover {
+    color: black;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 5px auto;
+    display: block;
+    object-fit: contain;
+}
+
+.modal h2 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.modal p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.modal-equation {
+    background: rgba(0, 102, 204, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 25px 0;
+    border: 2px solid rgba(0, 102, 204, 0.2);
+}
+
+.modal-equation span {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.modal-btn {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-mathematical);
+}
+
+.modal-math-symbol {
+    font-size: 5rem;
+    color: #10b981;
+    margin-bottom: 25px;
+    display: block;
+    font-weight: bold;
+}
+
+.modal-equation.success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.modal-equation.success span {
+    color: #10b981;
+}
+
+/* Loading state */
+.submit-btn.loading {
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    margin: -12.5px 0 0 -12.5px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-60px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalSlideIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.7) translateY(-50px);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        margin-bottom: 25px;
+    }
+
+    .logo-container {
+        margin-bottom: 15px;
+    }
+
+    .custom-logo {
+        padding: 15px;
+    }
+
+    .custom-logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-icon {
+        font-size: 2.2rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .form-container {
+        padding: 20px;
+        border-radius: 20px;
+        margin: 0 10px;
+    }
+
+    .form-header {
+        margin-bottom: 25px;
+    }
+
+    .form-icon {
+        font-size: 2.5rem;
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+    }
+
+    .form-subtitle {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+    }
+
+    .submit-btn {
+        padding: 15px;
+        font-size: 1rem;
+        min-width: 100%;
+        border-radius: 12px;
+    }
+
+    /* Modal Adjustments for Mobile */
+    .modal-content {
+        margin: 15% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 300px;
+        border-radius: 20px;
+    }
+
+    .modal-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .modal h2 {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+
+    .modal p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .modal-equation {
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+
+    .modal-equation span {
+        font-size: 1rem;
+    }
+
+    .modal-btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    .modal-math-symbol {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .modal-close {
+        font-size: 22px;
+        width: 28px;
+        height: 28px;
+        right: 12px;
+        top: 12px;
+    }
+
+    .floating-element {
+        font-size: 1rem;
+    }
+
+    .floating-element:nth-child(1) {
+        width: 50px;
+        height: 50px;
+        top: 5%;
+        left: 10%;
+    }
+
+    .floating-element:nth-child(2) {
+        width: 40px;
+        height: 40px;
+        top: 55%;
+        right: 15%;
+    }
+
+    .floating-element:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        bottom: 15%;
+        left: 20%;
+    }
+
+    .floating-element:nth-child(4) {
+        width: 45px;
+        height: 45px;
+        top: 25%;
+        right: 25%;
+    }
+
+    .floating-element:nth-child(5) {
+        width: 55px;
+        height: 55px;
+        top: 45%;
+        left: 45%;
+    }
+
+    .floating-element:nth-child(6) {
+        width: 50px;
+        height: 50px;
+        bottom: 35%;
+        right: 20%;
+    }
+
+    .floating-element:nth-child(7) {
+        width: 55px;
+        height: 55px;
+        top: 75%;
+        left: 25%;
+    }
+
+    .floating-element:nth-child(8) {
+        width: 45px;
+        height: 45px;
+        top: 10%;
+        left: 65%;
+    }
+
+    .math-symbol-animated {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+
+    .custom-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    .stats-section {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+
+    .form-container {
+        padding: 15px;
+        margin: 0 5px;
+        border-radius: 15px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .form-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    /* Further Modal Adjustments for Very Small Screens */
+    .modal-content {
+        margin: 20% auto;
+        padding: 15px;
+        max-width: 260px;
+        border-radius: 15px;
+    }
+
+    .modal-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .modal h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .modal p {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .modal-equation {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+
+    .modal-equation span {
+        font-size: 0.9rem;
+    }
+
+    .modal-btn {
+        padding: 10px 25px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+
+    .modal-math-symbol {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .modal-close {
+        font-size: 20px;
+        width: 25px;
+        height: 25px;
+        right: 10px;
+        top: 10px;
+    }
+
+    .floating-element {
+        font-size: 0.9rem;
+    }
+
+    .floating-element:nth-child(1) {
+        width: 40px;
+        height: 40px;
+    }
+
+    .floating-element:nth-child(2) {
+        width: 35px;
+        height: 35px;
+    }
+
+    .floating-element:nth-child(3) {
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-element:nth-child(4) {
+        width: 40px;
+        height: 40px;
+    }
+
+    .floating-element:nth-child(5) {
+        width: 45px;
+        height: 45px;
+    }
+
+    .floating-element:nth-child(6) {
+        width: 40px;
+        height: 40px;
+    }
+
+    .floating-element:nth-child(7) {
+        width: 45px;
+        height: 45px;
+    }
+
+    .floating-element:nth-child(8) {
+        width: 35px;
+        height: 35px;
+    }
+
+    .math-symbol-animated {
+        font-size: 1.2rem;
+    }
+}
