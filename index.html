@@ -907,54 +907,58 @@
 
         // Google Sheets Integration
         async function sendToGoogleSheets(studentData) {
-            console.log('Sending data to Google Sheets...', studentData);
-            
-            try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(studentData),
-                    mode: 'cors'
-                });
-                
-                console.log('Response status:', response.status);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const responseText = await response.text();
-                console.log('Raw response:', responseText);
-                
-                let result;
-                try {
-                    result = JSON.parse(responseText);
-                } catch (parseError) {
-                    console.error('Failed to parse JSON:', parseError);
-                    throw new Error('Invalid JSON response');
-                }
-                
-                console.log('Success:', result);
-                
-                // Save locally as backup
-                studentsDatabase.push(studentData);
-                localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
-                
-                return result;
-                
-            } catch (error) {
-                console.error('Error:', error);
-                
-                // Save locally as fallback
-                studentsDatabase.push(studentData);
-                localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
-                
-                alert(`Backend Error: ${error.message}\nData saved locally.`);
-                return { success: false, error: error.message };
-            }
+    console.log('Sending data to Google Sheets...', studentData);
+
+    // Convert studentData to URL-encoded string
+    const formBody = Object.keys(studentData)
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(studentData[key]))
+        .join('&');
+
+    try {
+        const response = await fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formBody
+        });
+
+        console.log('Response status:', response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const responseText = await response.text();
+        console.log('Raw response:', responseText);
+
+        let result;
+        try {
+            result = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('Failed to parse JSON:', parseError);
+            throw new Error('Invalid JSON response');
+        }
+
+        console.log('Success:', result);
+
+        // Save locally as backup
+        studentsDatabase.push(studentData);
+        localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
+
+        return result;
+
+    } catch (error) {
+        console.error('Error:', error);
+
+        // Save locally as fallback
+        studentsDatabase.push(studentData);
+        localStorage.setItem('aimsStudents', JSON.stringify(studentsDatabase));
+
+        alert(`Backend Error: ${error.message}\nData saved locally.`);
+        return { success: false, error: error.message };
+    }
+}
 
         // Form handling
         function generateStudentId() {
