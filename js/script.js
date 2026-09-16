@@ -244,8 +244,6 @@ async function processRegistration() {
             academicYear: formData.get('year'),
             position: getTrimmedFormValue(formData, 'position'),
             projectIdea: getTrimmedFormValue(formData, 'projectIdea'),
-            status: 'Active',
-            source: 'AIMS Website Registration - LGU'
         };
 
         // Validate email format
