@@ -34,8 +34,8 @@
         <header class="header">
             <div class="logo-container">
                 <div class="custom-logo">
-                    <img src="images/GIC_Logo.png" alt="GIC Logo" style="width:80px; height:80px; object-fit:contain; margin-bottom:10px;">
-                    <div class="logo-subtitle">Artificial Intelligence & Mathematics Society</div>
+                    <img src="images/GIC_Logo.png" alt="GIC Logo" style="width:100px; height:100px; object-fit:contain; margin-bottom:10px;">
+                    <div class="logo-subtitle">Garrison Intelligence Club</div>
                     <br>
                     <div class="logo-subtitle"><i>Innovate Illuminate Integrate</i></div>
                     <br>
@@ -126,26 +126,31 @@
                         </label>
                         <select id="year" name="year" required>
                             <option value="">Select Your Semester</option>
-                            <option value="FA-25">FA-26</option>
-                            <option value="FA-25">SP-26</option>
+                            <option value="FA-26">FA-26</option>
+                            <option value="SP-26">SP-26</option>
                             <option value="FA-25">FA-25</option>
                             <option value="SP-25">SP-25</option>
                             <option value="FA-24">FA-24</option>
                             <option value="SP-24">SP-24</option>
                             <option value="FA-23">FA-23</option>
                             <option value="SP-23">SP-23</option>
-                            <option value="FA-22">FA-22</option>
-                            <option value="SP-22">SP-22</option>
                             <option value="other">other</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">
+                            Position You Are Registering For <span class="required">*</span>
+                        </label>
+                        <input type="text" id="position" name="position" placeholder="Enter the position you want to register for" required>
                     </div>
                 </div>
                 
                 <div class="form-group full-width">
-                    <label for="interests">
-                        Interests & Research Goals
+                    <label for="projectIdea">
+                        Project Idea to Share with Our Professional Team <span class="required">*</span>
                     </label>
-                    <textarea id="interests" name="interests" placeholder="Share your passion for mathematics and Artificial Intelligence. What mathematical concepts fascinate you? What research areas do you want to explore? How do you see yourself contributing to the field of AI and Mathematics?"></textarea>
+                    <textarea id="projectIdea" name="projectIdea" required placeholder="Share any project idea you would like to discuss with our professional team."></textarea>
                 </div>
 
                 <div class="submit-section">
@@ -161,7 +166,7 @@
     <div id="welcomeModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeWelcomeModal()">&times;</span>
-            <img src="images/GIC_Logo.jpg" alt="GIC Logo" class="modal-logo">
+            <img src="images/GIC_Logo.png" alt="GIC Logo" class="modal-logo">
             <h2>Welcome to GIC Mathematical Universe!</h2>
             <p><strong>Garrison Intelligence Club</strong></p>
             <p>Welcome to Lahore Garrison University community for Garrison Intelligence Club enthusiasts. Join us in pushing the boundaries of technology and mathematical excellence.</p>

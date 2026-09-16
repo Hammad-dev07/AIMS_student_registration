@@ -238,7 +238,8 @@ async function processRegistration() {
             studentId: formData.get('studentId').trim(),
             department: formData.get('department'),
             academicYear: formData.get('year'),
-            interests: formData.get('interests').trim() || 'Not specified',
+            position: formData.get('position'),
+            projectIdea: formData.get('projectIdea').trim(),
             status: 'Active',
             source: 'AIMS Website Registration - LGU'
         };
