@@ -165,6 +165,10 @@ function generateStudentId() {
     return 'AIMS' + timestamp.slice(-6) + random.slice(-2);
 }
 
+function getTrimmedFormValue(formData, fieldName) {
+    return String(formData.get(fieldName) || '').trim();
+}
+
 function validateForm() {
     const requiredFields = document.querySelectorAll('[required]');
     let isValid = true;
@@ -232,14 +236,14 @@ async function processRegistration() {
                 day: 'numeric'
             }),
             registrationTime: new Date().toLocaleTimeString('en-US'),
-            fullName: formData.get('fullName').trim(),
-            email: formData.get('email').trim().toLowerCase(),
-            phone: formData.get('phone').trim(),
-            studentId: formData.get('studentId').trim(),
+            fullName: getTrimmedFormValue(formData, 'fullName'),
+            email: getTrimmedFormValue(formData, 'email').toLowerCase(),
+            phone: getTrimmedFormValue(formData, 'phone'),
+            studentId: getTrimmedFormValue(formData, 'studentId'),
             department: formData.get('department'),
             academicYear: formData.get('year'),
-            position: formData.get('position'),
-            projectIdea: formData.get('projectIdea').trim(),
+            position: getTrimmedFormValue(formData, 'position'),
+            projectIdea: getTrimmedFormValue(formData, 'projectIdea'),
             status: 'Active',
             source: 'AIMS Website Registration - LGU'
         };
